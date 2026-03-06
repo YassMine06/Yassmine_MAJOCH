@@ -1,0 +1,148 @@
+export const translations = {
+  EN: {
+    nav: {
+      home: 'Home',
+      about: 'About',
+      skills: 'Skills',
+      projects: 'Projects',
+      activities: 'Activities',
+      education: 'Education',
+      contact: 'Contact',
+    },
+    hero: {
+      badge: 'Available for opportunities',
+      greeting: "Hi, I'm",
+      cta_work: 'View My Work',
+      cta_contact: 'Contact Me',
+      scroll: 'Scroll',
+      typing: [
+        'Engineering Student',
+        'Software Developer',
+        'Web Developer',
+        'Problem Solver',
+        'Full-Stack Explorer',
+      ],
+    },
+    about: {
+      title: 'About Me',
+      subtitle: 'A passionate engineering student based in Casablanca, Morocco',
+      stats: {
+        projects: 'Projects',
+        experience: 'Years Exp.',
+        skills: 'Tech Stack',
+        coffee: 'Cups of Coffee',
+      }
+    },
+    skills: {
+      title: 'Skills & Expertise',
+      categories: {
+        languages: 'Programming Languages',
+        web: 'Web Development',
+        frameworks: 'Frameworks & Technologies',
+        databases: 'Databases',
+        tools: 'Tools',
+        systems: 'Operating Systems',
+      }
+    },
+    projects: {
+      title: 'Projects',
+      subtitle: 'Academic and personal projects that showcase my skills across different domains.',
+      visit: 'Visit GitHub',
+    },
+    activities: {
+      title: 'Activities & Engagement',
+      subtitle: 'Extracurricular involvement and community engagement.',
+    },
+    education: {
+      title: 'Education',
+      subtitle: 'My academic journey and achievements.',
+      badge_in_progress: 'In Progress',
+    },
+    contact: {
+      title: 'Get In Touch',
+      subtitle: "Open to opportunities, collaborations, and interesting conversations. Don't hesitate to reach out!",
+      cta_title: "Let's build something amazing together",
+      cta_subtitle: 'Currently based in Casablanca, Morocco · Open to remote opportunities',
+      name_label: 'Name',
+      email_label: 'Email',
+      message_label: 'Message',
+      send_btn: 'Send Message',
+    },
+    footer: {
+      rights: 'All rights reserved.',
+    }
+  },
+  FR: {
+    nav: {
+      home: 'Accueil',
+      about: 'À Propos',
+      skills: 'Compétences',
+      projects: 'Projets',
+      activities: 'Activités',
+      education: 'Formation',
+      contact: 'Contact',
+    },
+    hero: {
+      badge: 'Disponible pour opportunités',
+      greeting: "Salut, je suis",
+      cta_work: 'Voir mon travail',
+      cta_contact: 'Me contacter',
+      scroll: 'Défiler',
+      typing: [
+        'Étudiante Ingénieure',
+        'Développeuse Logiciel',
+        'Développeuse Web',
+        'Passionnée d\'Informatique',
+        'Exploratrice Full-Stack',
+      ],
+    },
+    about: {
+      title: 'À Propos de Moi',
+      subtitle: 'Étudiante ingénieure passionnée basée à Casablanca, Maroc',
+      stats: {
+        projects: 'Projets',
+        experience: 'Années Exp.',
+        skills: 'Tech Stack',
+        coffee: 'Tasses de Café',
+      }
+    },
+    skills: {
+      title: 'Compétences & Expertise',
+      categories: {
+        languages: 'Langages de Programmation',
+        web: 'Développement Web',
+        frameworks: 'Frameworks et Technologies',
+        databases: 'Bases de Données',
+        tools: 'Outils',
+        systems: 'Systèmes d\'Exploitation',
+      }
+    },
+    projects: {
+      title: 'Projets',
+      subtitle: 'Projets académiques et personnels illustrant mes compétences dans différents domaines.',
+      visit: 'Voir sur GitHub',
+    },
+    activities: {
+      title: 'Activités et Engagement',
+      subtitle: 'Engagement parascolaire et implication communautaire.',
+    },
+    education: {
+      title: 'Formation',
+      subtitle: 'Mon parcours académique et mes réalisations.',
+      badge_in_progress: 'En cours',
+    },
+    contact: {
+      title: 'Me Contacter',
+      subtitle: "Ouverte aux opportunités, collaborations et conversations intéressantes. N'hésitez pas à me contacter !",
+      cta_title: "Construisons quelque chose d'incroyable ensemble",
+      cta_subtitle: 'Basée à Casablanca, Maroc · Disponible pour opportunités à distance',
+      name_label: 'Nom',
+      email_label: 'Email',
+      message_label: 'Message',
+      send_btn: 'Envoyer',
+    },
+    footer: {
+      rights: 'Tous droits réservés.',
+    }
+  }
+};

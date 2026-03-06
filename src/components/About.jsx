@@ -8,18 +8,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stats = [
-  { label: 'Years of Learning', value: '3+' },
-  { label: 'Projects Built',    value: '5+' },
-  { label: 'Languages Spoken',  value: '3'  },
-  { label: 'Technologies Used', value: '12+'},
-];
-
-export default function About({ data }) {
+export default function About({ data, t }) {
   const sectionRef = useRef(null);
   const textRef    = useRef(null);
   const statsRef   = useRef(null);
   const imgRef     = useRef(null);
+
+  const stats = [
+    { label: t?.stats?.experience || 'Years of Learning', value: '3+' },
+    { label: t?.stats?.projects   || 'Projects Built',    value: '5+' },
+    { label: t?.stats?.skills     || 'Languages Spoken',  value: '3'  },
+    { label: t?.stats?.coffee     || 'Technologies Used', value: '12+'},
+  ];
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -70,7 +70,7 @@ export default function About({ data }) {
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <div className="mb-16 text-center">
-          <h2 className="section-title gradient-text">About Me</h2>
+          <h2 className="section-title gradient-text">{t?.title || 'About Me'}</h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -113,8 +113,7 @@ export default function About({ data }) {
           {/* Right – Text content */}
           <div ref={textRef}>
             <h3 className="text-2xl font-bold text-white mb-4">
-              A passionate engineering student based in{' '}
-              <span className="gradient-text">Casablanca, Morocco</span>
+              {t?.subtitle || 'A passionate engineering student based in Casablanca, Morocco'}
             </h3>
             <p className="text-gray-400 leading-relaxed mb-6 text-lg" style={{ lineHeight: 'var(--line-height-relaxed)' }}>
               I'm currently pursuing an <span className="text-indigo-400 font-medium">Engineering Degree in GLSID</span>{' '}
@@ -146,7 +145,7 @@ export default function About({ data }) {
             {/* Language proficiency */}
             {data?.languages?.length > 0 && (
               <div>
-                <p className="text-sm font-semibold text-gray-300 mb-2 uppercase tracking-widest">Languages</p>
+                <p className="text-sm font-semibold text-gray-300 mb-2 uppercase tracking-widest">{t?.nav?.languages || 'Languages'}</p>
                 <div className="flex flex-wrap gap-2">
                   {data.languages.map(({ language, level }) => (
                     <span key={language}

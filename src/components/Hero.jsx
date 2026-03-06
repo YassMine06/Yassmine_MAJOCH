@@ -130,14 +130,14 @@ function useThreeBackground(canvasRef) {
 }
 
 // ── Component ────────────────────────────────────────────────────────────────
-export default function Hero({ data }) {
+export default function Hero({ data, t }) {
   const canvasRef  = useRef(null);
   const heroRef    = useRef(null);
   const titleRef   = useRef(null);
   const subtitleRef = useRef(null);
   const ctaRef     = useRef(null);
 
-  const typedText = useTyping([
+  const typedText = useTyping(t?.typing || [
     'Engineering Student',
     'Software Developer',
     'Web Developer',
@@ -199,13 +199,13 @@ export default function Hero({ data }) {
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border mb-8 text-sm font-medium"
              style={{ borderColor: 'rgba(99,102,241,0.3)' }}>
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-gray-300">Available for opportunities</span>
+          <span className="text-gray-300">{t?.badge || 'Available for opportunities'}</span>
         </div>
 
         {/* Name */}
         <div ref={titleRef} className="mb-6">
           <h1 className="text-6xl md:text-8xl font-black leading-[1.1] tracking-tight">
-            <span className="text-white">Hi, I'm </span>
+            <span className="text-white">{t?.greeting || "Hi, I'm"} </span>
             <span className="gradient-text">{data?.name || 'Yassmine'}</span>
           </h1>
         </div>
@@ -227,7 +227,7 @@ export default function Hero({ data }) {
             onClick={scrollToWork}
             className="btn-glow px-8 py-4 rounded-xl text-white font-semibold text-base cursor-pointer inline-flex items-center gap-2"
           >
-            <span>View My Work</span>
+            <span>{t?.cta_work || 'View My Work'}</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
@@ -240,7 +240,7 @@ export default function Hero({ data }) {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            Contact Me
+            {t?.cta_contact || 'Contact Me'}
           </a>
         </div>
 
@@ -276,7 +276,7 @@ export default function Hero({ data }) {
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
-        <span>Scroll</span>
+        <span>{t?.scroll || 'Scroll'}</span>
       </div>
     </section>
   );

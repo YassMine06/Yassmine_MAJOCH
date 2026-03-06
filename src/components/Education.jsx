@@ -21,7 +21,7 @@ function buildEducation(data) {
   }));
 }
 
-export default function Education({ data }) {
+export default function Education({ data, t }) {
   const sectionRef = useRef(null);
   const itemsRef   = useRef([]);
 
@@ -52,8 +52,8 @@ export default function Education({ data }) {
       <div className="max-w-4xl mx-auto">
         {/* Title */}
         <div className="mb-16 text-center">
-          <h2 className="section-title gradient-text">Education</h2>
-          <p className="text-gray-400 mt-4">My academic journey and achievements.</p>
+          <h2 className="section-title gradient-text">{t?.title || 'Education'}</h2>
+          <p className="text-gray-400 mt-4">{t?.subtitle || 'My academic journey and achievements.'}</p>
         </div>
 
         {/* Timeline */}
@@ -89,11 +89,11 @@ export default function Education({ data }) {
                   </div>
                   {edu.badge && (
                     <span className="px-3 py-1 rounded-full text-xs font-semibold flex-shrink-0"
-                          style={edu.badge === 'In Progress'
+                          style={edu.badge === 'In Progress' || edu.badge === 'En cours'
                             ? { background: 'rgba(16,185,129,0.15)', color: '#34d399', border: '1px solid rgba(16,185,129,0.3)' }
                             : { background: 'rgba(99,102,241,0.15)', color: '#a5b4fc', border: '1px solid rgba(99,102,241,0.3)' }
                           }>
-                      {edu.badge}
+                      {edu.badge === 'In Progress' ? (t?.badge_in_progress || 'In Progress') : edu.badge}
                     </span>
                   )}
                 </div>

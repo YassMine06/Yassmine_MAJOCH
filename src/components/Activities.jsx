@@ -15,7 +15,7 @@ const getActivityIcon = (title) => {
   return '✨';
 };
 
-export default function Activities({ data }) {
+export default function Activities({ data, t }) {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
 
@@ -80,8 +80,8 @@ export default function Activities({ data }) {
     <section id="activities" ref={sectionRef} className="py-24 px-4 bg-dark-surface/30">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16 text-center">
-          <h2 className="section-title gradient-text">Activities & Engagement</h2>
-          <p className="text-gray-400 mt-4">Extracurricular involvement and community engagement.</p>
+          <h2 className="section-title gradient-text">{t?.title || 'Activities & Engagement'}</h2>
+          <p className="text-gray-400 mt-4">{t?.subtitle || 'Extracurricular involvement and community engagement.'}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">

@@ -30,57 +30,20 @@ const PROFICIENCY = {
   'Linux': 75, 'Windows': 90,
 };
 
-const CATEGORY_META = [
-  { key: 'languages',  label: 'Programming Languages', icon: '💻', color: '#6366f1' },
-  { key: 'web',        label: 'Web Development',       icon: '🌐', color: '#06b6d4' },
-  { key: 'frameworks', label: 'Frameworks & Tools',    icon: '⚡', color: '#8b5cf6' },
-  { key: 'databases',  label: 'Databases',             icon: '🗄️', color: '#ec4899' },
-  { key: 'tools',      label: 'Tools & Workflow',      icon: '🛠️', color: '#f59e0b' },
-  { key: 'systems',    label: 'Systems & OS',          icon: '🖥️', color: '#10b981' },
-];
-
-// ── SkillBar sub-component ───────────────────────────────────────────────────
-function SkillBar({ name, animate }) {
-  const level   = PROFICIENCY[name] ?? 60;
-  const fillRef = useRef(null);
-
-  useEffect(() => {
-    if (animate && fillRef.current) {
-      gsap.to(fillRef.current, {
-        scaleX: level / 100,
-        duration: 1.2,
-        ease: 'power2.out',
-        delay: 0.2,
-        transformOrigin: 'left center',
-      });
-    }
-  }, [animate, level]);
-
-  return (
-    <div className="mb-3">
-      <div className="flex justify-between items-center mb-1">
-        <span className="text-sm text-gray-300 flex items-center gap-2">
-          <span>{SKILL_ICONS[name] || '•'}</span>
-          {name}
-        </span>
-        <span className="text-xs text-gray-500">{level}%</span>
-      </div>
-      <div className="progress-bar">
-        <div
-          ref={fillRef}
-          className="progress-fill"
-          style={{ transform: 'scaleX(0)', transformOrigin: 'left center' }}
-        />
-      </div>
-    </div>
-  );
-}
-
 // ── Main component ───────────────────────────────────────────────────────────
-export default function Skills({ data }) {
+export default function Skills({ data, t }) {
   const sectionRef = useRef(null);
   const cardsRef   = useRef([]);
   const [triggered, setTriggered] = useState(false);
+
+  const CATEGORY_META = [
+    { key: 'languages',  label: t?.categories?.languages || 'Programming Languages', icon: '💻', color: '#6366f1' },
+    { key: 'web',        label: t?.categories?.web       || 'Web Development',       icon: '🌐', color: '#06b6d4' },
+    { key: 'frameworks', label: t?.categories?.frameworks || 'Frameworks & Tools',    icon: '⚡', color: '#8b5cf6' },
+    { key: 'databases',  label: t?.categories?.databases || 'Databases',             icon: '🗄️', color: '#ec4899' },
+    { key: 'tools',      label: t?.categories?.tools     || 'Tools & Workflow',      icon: '🛠️', color: '#f59e0b' },
+    { key: 'systems',    label: t?.categories?.systems   || 'Systems & OS',          icon: '🖥️', color: '#10b981' },
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -106,7 +69,7 @@ export default function Skills({ data }) {
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <div className="mb-16 text-center">
-          <h2 className="section-title gradient-text">Technical Skills</h2>
+          <h2 className="section-title gradient-text">{t?.title || 'Technical Skills'}</h2>
           <p className="text-gray-400 mt-4 max-w-lg mx-auto">
             A diverse toolkit built through coursework, personal projects, and continuous learning.
           </p>
@@ -165,5 +128,32 @@ export default function Skills({ data }) {
         </div>
       </div>
     </section>
+  );
+}
+
+// ── SkillBar Component ───────────────────────────────────────────────────────
+function SkillBar({ name, animate }) {
+  const icon  = SKILL_ICONS[name] || '📌';
+  const level = PROFICIENCY[name] || 70;
+
+  return (
+    <div className="mb-4 last:mb-0">
+      <div className="flex justify-between text-xs mb-1.5 font-medium text-gray-300">
+        <span className="flex items-center gap-1.5">
+          <span>{icon}</span>
+          <span>{name}</span>
+        </span>
+        <span className="text-gray-500">{level}%</span>
+      </div>
+      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.02)' }}>
+        <div
+          className="h-full rounded-full transition-all duration-1000 ease-out"
+          style={{
+            width: animate ? `${level}%` : '0%',
+            background: 'linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4)',
+          }}
+        />
+      </div>
+    </div>
   );
 }

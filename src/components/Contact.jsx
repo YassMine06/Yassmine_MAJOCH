@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Contact({ data }) {
+export default function Contact({ data, t }) {
   const sectionRef = useRef(null);
   const cardsRef   = useRef([]);
 
@@ -74,9 +74,9 @@ export default function Contact({ data }) {
       <div className="max-w-4xl mx-auto">
         {/* Title */}
         <div className="mb-16 text-center">
-          <h2 className="section-title gradient-text">Get In Touch</h2>
+          <h2 className="section-title gradient-text">{t?.title || 'Get In Touch'}</h2>
           <p className="text-gray-400 mt-4 max-w-md mx-auto">
-            Open to opportunities, collaborations, and interesting conversations. Don't hesitate to reach out!
+            {t?.subtitle || "Open to opportunities, collaborations, and interesting conversations. Don't hesitate to reach out!"}
           </p>
         </div>
 
@@ -112,9 +112,9 @@ export default function Contact({ data }) {
         <div className="mt-12 text-center">
           <div className="glass rounded-2xl p-8 border"
                style={{ borderColor: 'rgba(99,102,241,0.15)' }}>
-            <h3 className="text-xl font-bold text-white mb-2">Let's build something amazing together</h3>
+            <h3 className="text-xl font-bold text-white mb-2">{t?.cta_title || "Let's build something amazing together"}</h3>
             <p className="text-gray-400 text-sm mb-6">
-              Currently based in Casablanca, Morocco · Open to remote opportunities
+              {t?.cta_subtitle || 'Currently based in Casablanca, Morocco · Open to remote opportunities'}
             </p>
             <a
               href={`mailto:${data?.email}`}
@@ -123,7 +123,7 @@ export default function Contact({ data }) {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              Send an Email
+              {t?.send_btn || 'Send an Email'}
             </a>
           </div>
         </div>

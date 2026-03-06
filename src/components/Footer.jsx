@@ -2,7 +2,7 @@
  * Footer.jsx
  * Clean footer with name, nav links, and copyright.
  */
-export default function Footer({ data }) {
+export default function Footer({ data, t }) {
   const year = new Date().getFullYear();
 
   const links = [

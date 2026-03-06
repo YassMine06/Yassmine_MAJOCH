@@ -17,23 +17,14 @@ import Contact   from './components/Contact';
 import Footer    from './components/Footer';
 
 import { parsePortfolioData } from './utils/parseMarkdown';
+import { translations } from './utils/translations';
 import './styles.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ── Nav sections ─────────────────────────────────────────────────────────────
-const NAV_LINKS = [
-  { href: '#home',       label: 'Home'       },
-  { href: '#about',      label: 'About'      },
-  { href: '#skills',     label: 'Skills'     },
-  { href: '#projects',   label: 'Projects'   },
-  { href: '#activities', label: 'Activities' },
-  { href: '#education',  label: 'Education'  },
-  { href: '#contact',    label: 'Contact'    },
-];
-
 // ── Main App ─────────────────────────────────────────────────────────────────
 export default function App() {
+  const [language,      setLanguage]      = useState('FR');
   const [portfolioData, setPortfolioData] = useState(null);
   const [loading,       setLoading]       = useState(true);
   const [activeSection, setActiveSection] = useState('home');
@@ -41,24 +32,41 @@ export default function App() {
   const [scrolled,      setScrolled]      = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  const t = translations[language];
+
+  // ── Nav sections ─────────────────────────────────────────────────────────────
+  const NAV_LINKS = [
+    { href: '#home',       label: t.nav.home       },
+    { href: '#about',      label: t.nav.about      },
+    { href: '#skills',     label: t.nav.skills     },
+    { href: '#projects',   label: t.nav.projects   },
+    { href: '#activities', label: t.nav.activities },
+    { href: '#education',  label: t.nav.education  },
+    { href: '#contact',    label: t.nav.contact    },
+  ];
+
   const loaderRef = useRef(null);
 
-  // ── Fetch & parse README.md ────────────────────────────────────────────────
+  // ── Fetch & parse Markdown based on language ──────────────────────────────
   useEffect(() => {
-    fetch(`/README.md?v=${Date.now()}`)
+    setLoading(true);
+    fetch(`/README_${language}.md?v=${Date.now()}`)
       .then(res => res.text())
       .then(text => {
         setPortfolioData(parsePortfolioData(text));
-        // Animate loader out
+        
+        // Brief delay before removing loader
         setTimeout(() => {
           gsap.to(loaderRef.current, {
-            opacity: 0, duration: 0.6, ease: 'power2.in',
+            opacity: 0, 
+            duration: 0.6, 
+            ease: 'power2.in',
             onComplete: () => setLoading(false),
           });
-        }, 800);
+        }, 600);
       })
       .catch(() => setLoading(false));
-  }, []);
+  }, [language]);
 
   // ── Dark mode class on <html> ─────────────────────────────────────────────
   useEffect(() => {
@@ -146,7 +154,25 @@ export default function App() {
 
           {/* Right actions */}
           <div className="flex items-center gap-3">
-            {/* Removed theme toggle */}
+            {/* Language Switcher */}
+            <div className="flex items-center gap-1 glass p-1 rounded-xl border border-white/10 mr-2">
+              <button
+                onClick={() => setLanguage('FR')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  language === 'FR' ? 'bg-indigo-500 text-white shadow-lg' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                FR
+              </button>
+              <button
+                onClick={() => setLanguage('EN')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  language === 'EN' ? 'bg-indigo-500 text-white shadow-lg' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                EN
+              </button>
+            </div>
 
             {/* Mobile hamburger */}
             <button
@@ -192,16 +218,16 @@ export default function App() {
 
       {/* ── Main Content ──────────────────────────────────────────────────── */}
       <main>
-        <Hero      data={portfolioData} />
-        <About     data={portfolioData} />
-        <Skills    data={portfolioData} />
-        <Projects  data={portfolioData} />
-        <Activities data={portfolioData} />
-        <Education data={portfolioData} />
-        <Contact   data={portfolioData} />
+        <Hero      data={portfolioData} t={t.hero} />
+        <About     data={portfolioData} t={t.about} />
+        <Skills    data={portfolioData} t={t.skills} />
+        <Projects  data={portfolioData} t={t.projects} />
+        <Activities data={portfolioData} t={t.activities} />
+        <Education data={portfolioData} t={t.education} />
+        <Contact   data={portfolioData} t={t.contact} />
       </main>
 
-      <Footer data={portfolioData} />
+      <Footer data={portfolioData} t={t.footer} />
     </div>
   );
 }
