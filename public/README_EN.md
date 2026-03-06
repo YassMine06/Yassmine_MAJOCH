@@ -5,7 +5,6 @@ Engineering Student – Software Engineering & Distributed Information Systems
 📍 Casablanca, Morocco
 📧 Yassmine.ete@gmail.com
 
-📱 +212 707 314 004
 🔗 GitHub: github.com/YassMine06
 🔗 LinkedIn: linkedin.com/in/yassmine-majoch
 

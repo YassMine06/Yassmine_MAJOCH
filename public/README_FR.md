@@ -4,8 +4,6 @@ Yassmine Majoch
 
 📍 Casablanca, Maroc
 📧 Yassmine.ete@gmail.com
-
-📱 +212 707 314 004
 🔗 GitHub: github.com/YassMine06
 🔗 LinkedIn: linkedin.com/in/yassmine-majoch
 
