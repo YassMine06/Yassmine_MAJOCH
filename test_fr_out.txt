@@ -1,0 +1,31 @@
+﻿=== NAME / TITLE ===
+name: Yassmine Majoch
+title: ├ëtudiante Ing├®nieure ÔÇô G├®nie Logiciel et Syst├¿mes d'Information Distribu├®s
+location: Casablanca, Maroc
+
+=== EDUCATION ===
+
+=== SKILLS ===
+languages: [C, C++, Python, Java, PHP, JavaScript]
+web: [HTML, CSS, JavaScript, React]
+frameworks: [Streamlit, Flask]
+databases: [MySQL, SQLite]
+tools: [Git, GitHub, Visual Studio Code]
+systems: [Linux, Windows]
+
+=== PROJECTS ===
+0: title="Site Web du Club CESTE (Environnement et Soci├®t├®)" tech="HTML, CSS, JavaScript" desc="D├®veloppement d'un site web statique pr├®sentant le"
+1: title="Site Web du Club ENACTUS" tech="React" desc="Conception et d├®veloppement d'une interface modern"
+2: title="Application de Gestion Bancaire" tech="C" desc="Application console simulant un syst├¿me bancaire i"
+3: title="Syst├¿me de Gestion de Biblioth├¿que" tech="PHP, MySQL" desc="Syst├¿me web pour g├®rer les livres, utilisateurs et"
+4: title="Application M├®t├®o" tech="Python, Streamlit, API" desc="D├®veloppement d'une application qui r├®cup├¿re et af"
+
+=== ACTIVITIES ===
+0: title="Membre ÔÇö Club Robotique et IoT" detail="Facult├® des Sciences Ben MÔÇÖSik (2023ÔÇô2024)"
+1: title="Membre Actif ÔÇö Club Environnement et Citoyennet├®" detail="Lyc├®e El Maqdissi (2021ÔÇô2023)"
+2: title="Participante ├á la Simulation de la COP27" detail="Organis├®e par l'Acad├®mie R├®gionale de l'├ëducation "
+
+=== LANGUAGES ===
+0: Arabe - Langue maternelle
+1: Fran├ºais - Bonne ma├«trise
+2: Anglais - Interm├®diaire (niveau technique)

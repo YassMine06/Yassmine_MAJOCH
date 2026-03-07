@@ -116,14 +116,10 @@ export default function About({ data, t }) {
               {t?.subtitle || 'A passionate engineering student based in Casablanca, Morocco'}
             </h3>
             <p className="text-gray-400 leading-relaxed mb-6 text-lg" style={{ lineHeight: 'var(--line-height-relaxed)' }}>
-              I'm currently pursuing an <span className="text-indigo-400 font-medium">Engineering Degree in GLSID</span>{' '}
-              (Software Engineering and Distributed Information Systems) at ENSET. I am driven by
-              my curiosity and passion for building meaningful software solutions.
+              {t?.desc1 || "I'm currently pursuing an Engineering Degree in GLSID (Software Engineering and Distributed Information Systems) at ENSET. I am driven by my curiosity and passion for building meaningful software solutions."}
             </p>
             <p className="text-gray-400 leading-relaxed mb-8 text-lg" style={{ lineHeight: 'var(--line-height-relaxed)' }}>
-              My journey spans from C and low-level programming to full-stack web development with
-              React and Flask, along with data-driven projects using Python and Streamlit. I thrive at
-              the intersection of engineering rigor and creative problem-solving.
+              {t?.desc2 || "My journey spans from C and low-level programming to full-stack web development with React and Flask, along with data-driven projects using Python and Streamlit. I thrive at the intersection of engineering rigor and creative problem-solving."}
             </p>
 
             {/* Info pills */}

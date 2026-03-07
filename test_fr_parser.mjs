@@ -1,13 +1,7 @@
-/**
- * parseMarkdown.js
- * Parses the raw text content of README.md into structured portfolio data
- */
+import { readFileSync } from 'fs';
 
-/**
- * Extracts sections from plain text-based markdown (no heading symbols needed)
- * Handles the specific format of the README.md provided
- */
-export function parsePortfolioData(text) {
+// Minimal inline version of parsePortfolioData
+function parsePortfolioData(text) {
   const lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
 
   const data = {
@@ -33,17 +27,13 @@ export function parsePortfolioData(text) {
     languages: [],
   };
 
-  // ── Name & title ────────────────────────────────────────────────────────────
-  // Take lines[0] as name, lines[1] as title if they exist
   if (lines.length > 0) data.name = lines[0];
   if (lines.length > 1) {
-    // If line 1 is contact-related, it's not the title
     if (!lines[1].includes('📍') && !lines[1].includes('📧')) {
       data.title = lines[1];
     }
   }
 
-  // ── Contact info ────────────────────────────────────────────────────────────
   lines.forEach(line => {
     if (line.includes('📍'))     data.location = line.replace('📍', '').trim();
     if (line.includes('📧'))     data.email    = line.replace('📧', '').trim();
@@ -52,16 +42,15 @@ export function parsePortfolioData(text) {
     if (line.includes('LinkedIn:')) data.linkedin = line.replace(/.*LinkedIn:\s*/, '').trim();
   });
 
-  // ── Sections ─────────────────────────────────────────────────────────────────
   let currentSection = null;
   let currentProject = null;
   let currentActivity = null;
 
   const SECTION_MARKERS = {
-    'education':  ['Education', 'Formation', 'Éducation', 'Education'],
+    'education':  ['Education', 'Formation'],
     'skills':     ['Technical Skills', 'Compétences Techniques', 'Compétences'],
     'projects':   ['Projects', 'Projets Académiques & Personnels', 'Projets'],
-    'activities': ['Activities & Engagement', 'Activités & Engagement', 'Activités et Engagement', 'Activités', 'Engagements & Activités'],
+    'activities': ['Activities & Engagement', 'Activités & Engagement', 'Activités', 'Engagements & Activités', 'Activités et Engagement'],
     'languages':  ['Languages', 'Langues'],
   };
 
@@ -78,7 +67,7 @@ export function parsePortfolioData(text) {
     'Tools':                       'tools',
     'Outils':                      'tools',
     'Operating Systems':           'systems',
-    'Systèmes d\'Exploitation':    'systems',
+    "Systèmes d'Exploitation":     'systems',
   };
 
   let currentSkillSubsection = null;
@@ -89,14 +78,12 @@ export function parsePortfolioData(text) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    // Detect section
     let newSection = null;
     for (const [key, markers] of Object.entries(SECTION_MARKERS)) {
-      // Check for exact start of line to avoid overlap (e.g., Programming Languages matching Languages)
       if (markers.some(m => {
         const cleanM = m.toLowerCase().replace(/[^\w\s]/g, '').trim();
         const cleanLine = line.toLowerCase().replace(/[^\w\s]/g, '').trim();
-        return cleanLine === cleanM; // Exact match for section headers
+        return cleanLine === cleanM;
       })) {
          newSection = key;
          break;
@@ -110,10 +97,7 @@ export function parsePortfolioData(text) {
         projectDescBuffer = [];
       }
       if (currentActivity) {
-        if (activityBuffer.length > 0 && !currentActivity.institution) {
-          currentActivity.institution = activityBuffer[0];
-        }
-        currentActivity.detail = activityBuffer.slice(1).join(' ');
+        currentActivity.detail = activityBuffer.join(' ');
         data.activities.push(currentActivity);
         activityBuffer = [];
       }
@@ -134,10 +118,8 @@ export function parsePortfolioData(text) {
 
     if (!currentSection) continue;
 
-    // ── Education ──────────────────────────────────────────────────────────────
     if (currentSection === 'education') {
       const isDegree = /^(Engineering Degree|Cycle Ingénieur|Diplôme d'Ingénieur|Diplome d'Ingenieur|Diplôme Ingénieur|DEUG|Baccalaureate|Master|Bachelor|Licence|Baccalauréat|Baccalaureat)/i.test(line);
-      
       if (isDegree) {
         if (eduBuffer.length > 0) {
           data.education.push({
@@ -152,7 +134,6 @@ export function parsePortfolioData(text) {
       }
     }
 
-    // ── Skills ─────────────────────────────────────────────────────────────────
     if (currentSection === 'skills') {
       const subSection = SKILL_SUBSECTIONS[line];
       if (subSection) {
@@ -163,16 +144,15 @@ export function parsePortfolioData(text) {
       }
     }
 
-    // ── Projects ───────────────────────────────────────────────────────────────
     if (currentSection === 'projects') {
       const isTechLine = /^(Technologies?|Langage|Language|Technology|Technologie)\s*:/i.test(line);
       const isGithubLine = /^http/i.test(line);
-      
-      const isProjectTitle = 
-        !isTechLine && 
-        !isGithubLine && 
-        line.length < 70 && 
-        !line.includes('Developed') && 
+
+      const isProjectTitle =
+        !isTechLine &&
+        !isGithubLine &&
+        line.length < 70 &&
+        !line.includes('Developed') &&
         !line.includes('Designed') &&
         !line.includes('Designed and developed') &&
         !line.includes('Technologies:') &&
@@ -201,8 +181,8 @@ export function parsePortfolioData(text) {
           projectDescBuffer.push(line);
           const nextLine = lines[i + 1];
           const isSectionStart = nextLine && Object.values(SECTION_MARKERS).some(markers => markers.some(m => nextLine.includes(m)));
-          const nextIsTitle = nextLine && nextLine.length < 60 && !nextLine.includes('Developed') && !/^(Technologies?|Language|Technology)\s*:/i.test(nextLine);
-          
+          const nextIsTitle = nextLine && nextLine.length < 70 && !nextLine.includes('Developed') && !/^(Technologies?|Language|Technology)\s*:/i.test(nextLine);
+
           if (!nextLine || isSectionStart || nextIsTitle) {
             currentProject.description = projectDescBuffer.join(' ');
             data.projects.push(currentProject);
@@ -213,32 +193,20 @@ export function parsePortfolioData(text) {
       }
     }
 
-    // ── Activities ─────────────────────────────────────────────────────────────
     if (currentSection === 'activities') {
-      // Look for activity markers like "Member", "Active Member", "COP27", etc.
       const isActivityHeader = /^(Member|Active Member|Active member|Participant|COP27|Membre|Membre Actif|Participante|Organisateur|Volunteer)/i.test(line);
-      
       if (isActivityHeader) {
-        if (currentActivity) {
-          currentActivity.detail = activityBuffer.slice(1).join(' ');
-          if (!currentActivity.institution && activityBuffer.length > 0) {
-            currentActivity.institution = activityBuffer[0];
-          }
-          data.activities.push(currentActivity);
+        if (currentActivity && activityBuffer.length > 0) {
+          currentActivity.detail = activityBuffer.join(' ');
         }
-        
-        currentActivity = { title: line, institution: '', detail: '' };
+        if (currentActivity) data.activities.push(currentActivity);
+        currentActivity = { title: line, detail: '' };
         activityBuffer = [];
       } else if (currentActivity) {
         activityBuffer.push(line);
-        // The first pushed line is the institution
-        if (activityBuffer.length === 1) {
-          currentActivity.institution = line;
-        }
       }
     }
 
-    // ── Languages ──────────────────────────────────────────────────────────────
     if (currentSection === 'languages') {
       if (line.includes(':')) {
         const [lang, level] = line.split(':');
@@ -247,12 +215,8 @@ export function parsePortfolioData(text) {
     }
   }
 
-  // Flush remaining buffers
   if (currentActivity) {
-    if (activityBuffer.length > 0 && !currentActivity.institution) {
-      currentActivity.institution = activityBuffer[0];
-    }
-    currentActivity.detail = activityBuffer.slice(1).join(' ');
+    currentActivity.detail = activityBuffer.join(' ');
     data.activities.push(currentActivity);
   }
   if (eduBuffer.length > 0) {
@@ -265,3 +229,26 @@ export function parsePortfolioData(text) {
 
   return data;
 }
+
+const fr = readFileSync('d:/YASSMINE/Cycle/S2/AAStage/Portfolio/public/README_FR.md', 'utf8');
+const data = parsePortfolioData(fr);
+
+console.log('=== NAME / TITLE ===');
+console.log('name:', data.name);
+console.log('title:', data.title);
+console.log('location:', data.location);
+
+console.log('\n=== EDUCATION ===');
+data.education.forEach((e, i) => console.log(`${i}: ${e.degree} | ${e.institution} | badge:${e.badge ?? 'none'}`));
+
+console.log('\n=== SKILLS ===');
+Object.entries(data.skills).forEach(([k,v]) => console.log(`${k}: [${v.join(', ')}]`));
+
+console.log('\n=== PROJECTS ===');
+data.projects.forEach((p, i) => console.log(`${i}: title="${p.title}" tech="${p.tech}" desc="${p.description?.slice(0,50)}"`));
+
+console.log('\n=== ACTIVITIES ===');
+data.activities.forEach((a, i) => console.log(`${i}: title="${a.title}" detail="${a.detail?.slice(0,50)}"`));
+
+console.log('\n=== LANGUAGES ===');
+data.languages.forEach((l, i) => console.log(`${i}: ${l.language} - ${l.level}`));

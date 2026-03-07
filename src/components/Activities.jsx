@@ -9,9 +9,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const getActivityIcon = (title) => {
-  if (title.toLowerCase().includes('robotics')) return '🤖';
-  if (title.toLowerCase().includes('environment') || title.toLowerCase().includes('cop27')) return '🌱';
-  if (title.toLowerCase().includes('citizenship')) return '🤝';
+  const t = title.toLowerCase();
+  if (t.includes('robotics') || t.includes('robotique') || t.includes('iot')) return '🤖';
+  if (t.includes('environment') || t.includes('environnement') || t.includes('cop27') || t.includes('citoyennet')) return '🌱';
+  if (t.includes('citizenship') || t.includes('citoyennet') || t.includes('enactus')) return '🤝';
+  if (t.includes('simulation') || t.includes('cop')) return '🌍';
   return '✨';
 };
 

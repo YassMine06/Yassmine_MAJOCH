@@ -26,6 +26,8 @@ export const translations = {
     about: {
       title: 'About Me',
       subtitle: 'A passionate engineering student based in Casablanca, Morocco',
+      desc1: "I'm currently pursuing an Engineering Degree in GLSID (Software Engineering and Distributed Information Systems) at ENSET. I am driven by my curiosity and passion for building meaningful software solutions.",
+      desc2: "My journey spans from C and low-level programming to full-stack web development with React and Flask, along with data-driven projects using Python and Streamlit. I thrive at the intersection of engineering rigor and creative problem-solving.",
       stats: {
         projects: 'Projects',
         experience: 'Years Exp.',
@@ -99,6 +101,8 @@ export const translations = {
     about: {
       title: 'À Propos de Moi',
       subtitle: 'Étudiante ingénieure passionnée basée à Casablanca, Maroc',
+      desc1: "Je poursuis actuellement un Diplôme d'Ingénieure en GLSID (Génie Logiciel et Systèmes d'Information Distribués) à l'ENSET. Je suis motivée par ma curiosité et ma passion pour la création de solutions logicielles significatives.",
+      desc2: "Mon parcours va de la programmation en C au développement web full-stack avec React et Flask, en passant par des projets axés sur les données avec Python et Streamlit. J'excelle à l'intersection de la rigueur technique et de la résolution créative de problèmes.",
       stats: {
         projects: 'Projets',
         experience: 'Années Exp.',

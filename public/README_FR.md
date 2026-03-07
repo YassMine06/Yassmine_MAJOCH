@@ -93,7 +93,8 @@ Application console simulant un système bancaire incluant des opérations telle
 
 Système de Gestion de Bibliothèque
 
-Développement d'un système web pour la gestion des livres, des utilisateurs et des opérations d'emprunt.
+Technologies: PHP, MySQL
+Système web pour gérer les livres, utilisateurs et opérations d'emprunt.
 
 Application Météo
 
