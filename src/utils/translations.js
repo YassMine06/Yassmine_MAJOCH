@@ -32,7 +32,7 @@ export const translations = {
         projects: 'Projects',
         experience: 'Years Exp.',
         skills: 'Tech Stack',
-        coffee: 'Cups of Coffee',
+        techs: 'Technologies',
       }
     },
     skills: {
@@ -107,7 +107,7 @@ export const translations = {
         projects: 'Projets',
         experience: 'Années Exp.',
         skills: 'Tech Stack',
-        coffee: 'Tasses de Café',
+        techs: 'Technologies',
       }
     },
     skills: {

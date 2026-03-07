@@ -20,7 +20,7 @@ export default function Footer({ data, t }) {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand */}
           <div className="text-center md:text-left">
-            <span className="font-black text-lg gradient-text">{data?.name || 'YM'}</span>
+            <span className="font-black text-lg text-white">{data?.name || 'YM'}</span>
             <p className="text-gray-500 text-sm mt-0.5">Software Engineering Student · ENSET</p>
           </div>
 
@@ -55,7 +55,7 @@ export default function Footer({ data, t }) {
 
         <div className="mt-6 pt-6 border-t text-center text-gray-600 text-xs"
              style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
-          © {year} {data?.name}. Built with React · Tailwind CSS · GSAP · Three.js
+          © {year} {data?.name}. 
         </div>
       </div>
     </footer>

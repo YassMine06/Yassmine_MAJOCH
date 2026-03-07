@@ -109,7 +109,7 @@ export default function Skills({ data, t }) {
         </div>
 
         {/* Floating tags */}
-        <div className="mt-12 text-center">
+        {/* <div className="mt-12 text-center">
           <p className="text-gray-500 text-sm uppercase tracking-widest mb-4">Also familiar with</p>
           <div className="flex flex-wrap justify-center gap-2">
             {['Git & GitHub', 'Linux CLI', 'Agile/Scrum', 'REST APIs', 'Problem Solving'].map(tag => (
@@ -125,7 +125,7 @@ export default function Skills({ data, t }) {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

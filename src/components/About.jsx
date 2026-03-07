@@ -18,7 +18,7 @@ export default function About({ data, t }) {
     { label: t?.stats?.experience || 'Years of Learning', value: '3+' },
     { label: t?.stats?.projects   || 'Projects Built',    value: '5+' },
     { label: t?.stats?.skills     || 'Languages Spoken',  value: '3'  },
-    { label: t?.stats?.coffee     || 'Technologies Used', value: '12+'},
+    { label: t?.stats?.techs      || 'Technologies Used', value: '12+'},
   ];
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function About({ data, t }) {
               {/* Avatar initials */}
               <div className="absolute inset-[3px] rounded-2xl flex flex-col items-center justify-center"
                    style={{ background: 'linear-gradient(135deg, #12121f 0%, #1a1a3a 100%)' }}>
-                <div className="w-24 h-24 rounded-full flex items-center justify-center text-4xl font-black gradient-text mb-3"
+                <div className="w-24 h-24 rounded-full flex items-center justify-center text-4xl font-black text-white mb-3"
                      style={{ background: 'rgba(99,102,241,0.15)', border: '2px solid rgba(99,102,241,0.3)' }}>
                   YM
                 </div>

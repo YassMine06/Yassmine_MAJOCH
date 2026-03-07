@@ -15,7 +15,6 @@ export function parsePortfolioData(text) {
     title: '',
     location: '',
     email: '',
-    phone: '',
     github: '',
     linkedin: '',
     about: '',
@@ -47,7 +46,6 @@ export function parsePortfolioData(text) {
   lines.forEach(line => {
     if (line.includes('📍'))     data.location = line.replace('📍', '').trim();
     if (line.includes('📧'))     data.email    = line.replace('📧', '').trim();
-    if (line.includes('📱'))     data.phone    = line.replace('📱', '').trim();
     if (line.includes('GitHub:')) data.github  = line.replace(/.*GitHub:\s*/, '').trim();
     if (line.includes('LinkedIn:')) data.linkedin = line.replace(/.*LinkedIn:\s*/, '').trim();
   });

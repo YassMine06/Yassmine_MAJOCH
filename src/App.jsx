@@ -133,7 +133,7 @@ export default function App() {
         <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           {/* Logo */}
           <a href="#home" onClick={e => handleNav(e, '#home')}
-             className="font-black text-xl gradient-text tracking-tight">
+             className="font-black text-xl text-white tracking-tight">
             {'YM'}
             <span className="text-indigo-400"></span>
           </a>
