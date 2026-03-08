@@ -151,7 +151,7 @@ export default function App() {
           {/* Right actions */}
           <div className="flex items-center gap-3">
             {/* Language Switcher */}
-            <div className="flex items-center gap-1 glass p-1 rounded-xl border border-white/10 mr-2">
+            <div className="flex items-center gap-1 glass p-1 rounded-xl border border-white/10 mr-4">
               <button
                 onClick={() => setLanguage('FR')}
                 className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${

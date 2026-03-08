@@ -86,14 +86,14 @@ export default function Activities({ data, t }) {
           <p className="text-gray-400 mt-4">{t?.subtitle || 'Extracurricular involvement and community engagement.'}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {activities.map((activity, idx) => (
             <div
               key={idx}
-              className="activity-card card-premium perspective-1000 group"
+              className="activity-card card-premium perspective-1000 group p-6 md:p-8"
             >
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-500">
+              <div className="flex items-start gap-4 md:gap-6">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-indigo-500/10 flex-shrink-0 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 transition-transform duration-500">
                   {getActivityIcon(activity.title)}
                 </div>
                 <div className="flex-1">

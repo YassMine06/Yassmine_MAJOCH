@@ -47,7 +47,7 @@ export default function Education({ data, t }) {
   const entries = buildEducation(data);
 
   return (
-    <section id="education" ref={sectionRef} className="py-24 px-4"
+    <section id="education" ref={sectionRef} className="py-24 px-6 md:px-4"
              style={{ background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-surface), var(--bg-primary))' }}>
       <div className="max-w-4xl mx-auto">
         {/* Title */}
@@ -57,10 +57,10 @@ export default function Education({ data, t }) {
         </div>
 
         {/* Timeline */}
-        <div className="relative pl-8">
-          {/* Vertical line */}
+        <div className="relative pl-6 md:pl-8">
+          {/* Vertical line with fading bottom */}
           <div className="absolute left-3 top-0 bottom-0 w-0.5"
-               style={{ background: 'linear-gradient(to bottom, #6366f1, #8b5cf6, #06b6d4, transparent)' }} />
+               style={{ background: 'linear-gradient(to bottom, #6366f1, #8b5cf6, #06b6d4, transparent 95%)' }} />
 
           {entries.map((edu, idx) => (
             <div
@@ -69,7 +69,7 @@ export default function Education({ data, t }) {
               className="relative mb-10 last:mb-0"
             >
               {/* Dot on timeline */}
-              <div className="absolute -left-8 mt-1.5 w-5 h-5 rounded-full flex items-center justify-center"
+              <div className="absolute -left-6 md:-left-8 mt-1.5 w-5 h-5 rounded-full flex items-center justify-center z-10"
                    style={{
                      background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
                      boxShadow: '0 0 16px rgba(99,102,241,0.5)',
@@ -83,8 +83,8 @@ export default function Education({ data, t }) {
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{edu.icon}</span>
                     <div>
-                      <h3 className="text-white font-bold text-lg leading-tight">{edu.degree}</h3>
-                      <p className="text-indigo-400 text-sm mt-1">{edu.institution}</p>
+                      <h3 className="text-white font-bold text-base md:text-lg leading-tight">{edu.degree}</h3>
+                      <p className="text-indigo-400 text-xs md:text-sm mt-1">{edu.institution}</p>
                     </div>
                   </div>
                   {edu.badge && (
