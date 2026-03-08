@@ -205,7 +205,7 @@ export default function Hero({ data, t }) {
         {/* Name */}
         <div ref={titleRef} className="mb-6">
           <h1 className="text-6xl md:text-8xl font-black leading-[1.1] tracking-tight">
-            <span className="text-white">{t?.greeting || "Hi, I'm"} </span>
+            <span className="text-white">{t?.greeting || "Hi, I'm"} </span><br/>
             <span className="gradient-text">{data?.name || 'Yassmine'}</span>
           </h1>
         </div>
@@ -218,7 +218,7 @@ export default function Hero({ data, t }) {
 
         {/* Subtitle */}
         <div className="text-gray-400 text-base md:text-xl mb-12 max-w-2xl mx-auto space-y-1 md:space-y-2 mt-4 md:mt-0">
-          <p className="font-medium text-gray-300 leading-tight md:leading-normal">{data?.title}</p>
+          <p className="font-medium text-gray-300 leading-tight md:leading-normal text-sm md:text-lg">{data?.title}</p>
           <p className="text-xs md:text-base opacity-70">{data?.location}</p>
         </div>
 

@@ -6,7 +6,7 @@
 
 export const portfolioData = {
   EN: {
-    name: 'Yassmine Majoch',
+    name: 'Yassmine MAJOCH',
     title: 'Engineering Student - Software Engineering & Distributed Information Systems',
     location: 'Casablanca, Morocco',
     email: 'Yassmine.ete@gmail.com',
@@ -98,7 +98,7 @@ export const portfolioData = {
     ]
   },
   FR: {
-    name: 'Yassmine Majoch',
+    name: 'Yassmine MAJOCH',
     title: 'Étudiante Ingénieure - Génie Logiciel et Systèmes d\'Information Distribués',
     location: 'Casablanca, Maroc',
     email: 'Yassmine.ete@gmail.com',
