@@ -16,7 +16,7 @@ import Education from './components/Education';
 import Contact   from './components/Contact';
 import Footer    from './components/Footer';
 
-import { parsePortfolioData } from './utils/parseMarkdown';
+import { portfolioData } from './data/portfolioData';
 import { translations } from './utils/translations';
 import './styles.css';
 
@@ -25,7 +25,6 @@ gsap.registerPlugin(ScrollTrigger);
 // ── Main App ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [language,      setLanguage]      = useState('FR');
-  const [portfolioData, setPortfolioData] = useState(null);
   const [loading,       setLoading]       = useState(true);
   const [activeSection, setActiveSection] = useState('home');
   const [menuOpen,      setMenuOpen]      = useState(false);
@@ -33,40 +32,27 @@ export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const t = translations[language];
-
-  // ── Nav sections ─────────────────────────────────────────────────────────────
-  const NAV_LINKS = [
-    { href: '#home',       label: t.nav.home       },
-    { href: '#about',      label: t.nav.about      },
-    { href: '#skills',     label: t.nav.skills     },
-    { href: '#projects',   label: t.nav.projects   },
-    { href: '#activities', label: t.nav.activities },
-    { href: '#education',  label: t.nav.education  },
-    { href: '#contact',    label: t.nav.contact    },
-  ];
+  const currentPortfolioData = portfolioData[language];
 
   const loaderRef = useRef(null);
 
-  // ── Fetch & parse Markdown based on language ──────────────────────────────
+  // ── Handling Loading Animation ──────────────────────────────────────────────
   useEffect(() => {
-    setLoading(true);
-    fetch(`/README_${language}.md?v=${Date.now()}`)
-      .then(res => res.text())
-      .then(text => {
-        setPortfolioData(parsePortfolioData(text));
-        
-        // Brief delay before removing loader
-        setTimeout(() => {
-          gsap.to(loaderRef.current, {
-            opacity: 0, 
-            duration: 0.6, 
-            ease: 'power2.in',
-            onComplete: () => setLoading(false),
-          });
-        }, 600);
-      })
-      .catch(() => setLoading(false));
-  }, [language]);
+    // Brief delay before removing loader
+    const timer = setTimeout(() => {
+      if (loaderRef.current) {
+        gsap.to(loaderRef.current, {
+          opacity: 0, 
+          duration: 0.6, 
+          ease: 'power2.in',
+          onComplete: () => setLoading(false),
+        });
+      } else {
+        setLoading(false);
+      }
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   // ── Dark mode class on <html> ─────────────────────────────────────────────
   useEffect(() => {
@@ -99,13 +85,23 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // ── Smooth scroll on nav click ────────────────────────────────────────────
   const handleNav = (e, href) => {
     e.preventDefault();
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
   };
+
+  // ── Nav sections ─────────────────────────────────────────────────────────────
+  const NAV_LINKS = [
+    { href: '#home',       label: t.nav.home       },
+    { href: '#about',      label: t.nav.about      },
+    { href: '#skills',     label: t.nav.skills     },
+    { href: '#projects',   label: t.nav.projects   },
+    { href: '#activities', label: t.nav.activities },
+    { href: '#education',  label: t.nav.education  },
+    { href: '#contact',    label: t.nav.contact    },
+  ];
 
   return (
     <div className='dark'>
@@ -218,16 +214,16 @@ export default function App() {
 
       {/* ── Main Content ──────────────────────────────────────────────────── */}
       <main>
-        <Hero      data={portfolioData} t={t.hero} />
-        <About     data={portfolioData} t={t.about} />
-        <Skills    data={portfolioData} t={t.skills} />
-        <Projects  data={portfolioData} t={t.projects} />
-        <Activities data={portfolioData} t={t.activities} />
-        <Education data={portfolioData} t={t.education} />
-        <Contact   data={portfolioData} t={t.contact} />
+        <Hero      data={currentPortfolioData} t={t.hero} />
+        <About     data={currentPortfolioData} t={t.about} />
+        <Skills    data={currentPortfolioData} t={t.skills} />
+        <Projects  data={currentPortfolioData} t={t.projects} />
+        <Activities data={currentPortfolioData} t={t.activities} />
+        <Education data={currentPortfolioData} t={t.education} />
+        <Contact   data={currentPortfolioData} t={t.contact} />
       </main>
 
-      <Footer data={portfolioData} t={t.footer} />
+      <Footer data={currentPortfolioData} t={t.footer} />
     </div>
   );
 }

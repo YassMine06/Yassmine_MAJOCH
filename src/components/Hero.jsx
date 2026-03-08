@@ -217,9 +217,10 @@ export default function Hero({ data, t }) {
         </div>
 
         {/* Subtitle */}
-        <p className="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto" style={{ lineHeight: 'var(--line-height-relaxed)' }}>
-          {data?.title} · {data?.location}
-        </p>
+        <div className="text-gray-400 text-base md:text-xl mb-12 max-w-2xl mx-auto space-y-1 md:space-y-2 mt-4 md:mt-0">
+          <p className="font-medium text-gray-300 leading-tight md:leading-normal">{data?.title}</p>
+          <p className="text-xs md:text-base opacity-70">{data?.location}</p>
+        </div>
 
         {/* CTA buttons */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center">

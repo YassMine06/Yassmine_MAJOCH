@@ -48,8 +48,9 @@ export const translations = {
     },
     projects: {
       title: 'Projects',
-      subtitle: 'Academic and personal projects that showcase my skills across different domains.',
+      subtitle: 'Projects and achievements showcasing my technical expertise.',
       visit: 'Visit GitHub',
+      academic_project: 'Academic Project',
     },
     activities: {
       title: 'Activities & Engagement',
@@ -112,6 +113,7 @@ export const translations = {
     },
     skills: {
       title: 'Compétences & Expertise',
+      subtitle: 'Une gamme de technologies maîtrisées à travers mes études et projets personnels.',
       categories: {
         languages: 'Langages de Programmation',
         web: 'Développement Web',
@@ -123,8 +125,9 @@ export const translations = {
     },
     projects: {
       title: 'Projets',
-      subtitle: 'Projets académiques et personnels illustrant mes compétences dans différents domaines.',
+      subtitle: 'Projets académiques et personnels illustrant mes compétences techniques.',
       visit: 'Voir sur GitHub',
+      academic_project: 'Projet Académique',
     },
     activities: {
       title: 'Activités et Engagement',
@@ -137,7 +140,7 @@ export const translations = {
     },
     contact: {
       title: 'Me Contacter',
-      subtitle: "Ouverte aux opportunités, collaborations et conversations intéressantes. N'hésitez pas à me contacter !",
+      subtitle: "Je suis à l'écoute d'opportunités, de collaborations ou de projets passionnants. N'hésitez pas !",
       cta_title: "Construisons quelque chose d'incroyable ensemble",
       cta_subtitle: 'Basée à Casablanca, Maroc · Disponible pour opportunités à distance',
       name_label: 'Nom',

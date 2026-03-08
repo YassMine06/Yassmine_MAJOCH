@@ -70,8 +70,8 @@ export default function Skills({ data, t }) {
         {/* Title */}
         <div className="mb-16 text-center">
           <h2 className="section-title gradient-text">{t?.title || 'Technical Skills'}</h2>
-          <p className="text-gray-400 mt-4 max-w-lg mx-auto">
-            A diverse toolkit built through coursework, personal projects, and continuous learning.
+          <p className="text-gray-400 mt-4 max-w-lg mx-auto text-sm md:text-base">
+            {t?.subtitle || 'A diverse toolkit built through coursework, personal projects, and continuous learning.'}
           </p>
         </div>
 
