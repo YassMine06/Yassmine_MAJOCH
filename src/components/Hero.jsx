@@ -181,7 +181,7 @@ export default function Hero({ data, t }) {
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24"
     >
       {/* Three.js canvas */}
       <canvas
@@ -192,7 +192,7 @@ export default function Hero({ data, t }) {
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a14]/40 to-[#0a0a14]" style={{ zIndex: 1 }} />
-
+      
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         {/* Badge */}
